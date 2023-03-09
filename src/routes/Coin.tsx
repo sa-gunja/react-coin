@@ -1,5 +1,12 @@
 import { useEffect, useState } from "react";
-import { Switch, Route, Link, useLocation, useParams, useRouteMatch } from "react-router-dom";
+import {
+  Switch,
+  Route,
+  Link,
+  useLocation,
+  useParams,
+  useRouteMatch,
+} from "react-router-dom";
 import styled from "styled-components";
 import Price from "./Price";
 import Chart from "./Chart";
@@ -30,7 +37,11 @@ const Loader = styled.span`
 `;
 
 const Back = styled.button`
+  width: 50px;
+  height: 30px;
+  border-radius: 5px;
   margin-right: 20px;
+  background-color: ${(props) => props.theme.accentColor};
 `;
 
 const Overview = styled.div`
@@ -74,7 +85,8 @@ const GridWarp = styled.div`
 
 const GridItem = styled.div<{ isActive: boolean }>`
   background-color: ${(props) => props.theme.textColor};
-  color: ${(props) => (props.isActive ? props.theme.accentColor : props.theme.bgColor)};
+  color: ${(props) =>
+    props.isActive ? props.theme.accentColor : props.theme.bgColor};
   border-radius: 10px;
   text-align: center;
   padding: 10px 0;
@@ -153,9 +165,13 @@ function Coin({}: IRouterProps) {
   const priceMatch = useRouteMatch("/:coinId/price");
   const chartMatch = useRouteMatch("/:coinId/chart");
 
-  const { isLoading: infoLoading, data: infoData } = useQuery<InfoData>(["info", coinId], () => fetchInfo(coinId));
-  const { isLoading: tickersLoading, data: tickersData } = useQuery<PriceData>(["tickers", coinId], () =>
-    fetchTickers(coinId)
+  const { isLoading: infoLoading, data: infoData } = useQuery<InfoData>(
+    ["info", coinId],
+    () => fetchInfo(coinId)
+  );
+  const { isLoading: tickersLoading, data: tickersData } = useQuery<PriceData>(
+    ["tickers", coinId],
+    () => fetchTickers(coinId)
   );
 
   const loading = infoLoading || tickersLoading;
@@ -163,13 +179,17 @@ function Coin({}: IRouterProps) {
   return (
     <Container>
       <Helmet>
-        <title>{state ? state.name : loading ? "Loading..." : infoData?.id}</title>
+        <title>
+          {state ? state.name : loading ? "Loading..." : infoData?.id}
+        </title>
       </Helmet>
       <Header>
         <Link to="/">
-          <Back>back</Back>
+          <Back>Home</Back>
         </Link>
-        <Title>{state ? state.name : loading ? "Loading..." : infoData?.id}</Title>
+        <Title>
+          {state ? state.name : loading ? "Loading..." : infoData?.id}
+        </Title>
       </Header>
 
       {loading ? (
@@ -215,7 +235,7 @@ function Coin({}: IRouterProps) {
 
           <Switch>
             <Route path={`/${coinId}/price`}>
-              <Price />
+              <Price coinId={coinId} />
             </Route>
             <Route path={`/${coinId}/chart`}>
               <Chart coinId={coinId} />
