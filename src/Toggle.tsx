@@ -1,5 +1,3 @@
-import React, { useState } from "react";
-import ReactDOM from "react-dom/client";
 import { useSetRecoilState } from "recoil";
 import styled from "styled-components";
 import { isDarkAtom } from "./atom";
@@ -59,7 +57,11 @@ function Toggle() {
 
   return (
     <SwitchWarp>
-      <CheckBox id="checkbox" type="checkbox" onClick={(event) => checkBoxHandler(event)} />
+      <CheckBox
+        id="checkbox"
+        type="checkbox"
+        onClick={(event) => checkBoxHandler(event)}
+      />
       <CheckBoxLabel htmlFor="checkbox" />
     </SwitchWarp>
   );

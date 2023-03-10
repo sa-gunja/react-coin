@@ -2,11 +2,10 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Coin from "./routes/Coin";
 import Coins from "./routes/Coins";
 
-interface IRouterProps {}
-
-function Router({}: IRouterProps) {
+function Router() {
   return (
-    <BrowserRouter>
+    // gh-pages 사용시 프로젝트명까지 url로 변경하기위함
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Switch>
         <Route path="/:coinId">
           <Coin />

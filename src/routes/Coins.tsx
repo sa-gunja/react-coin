@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -93,7 +92,9 @@ function Coins({}: ICoinsProps) {
                   },
                 }}
               >
-                <Img src={`https://cryptocurrencyliveprices.com/img/${coin.id}.png`} />
+                <Img
+                  src={`https://cryptocurrencyliveprices.com/img/${coin.id}.png`}
+                />
                 {coin.name} &rarr;
               </Link>
             </Coin>

@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import {
   Switch,
   Route,
@@ -11,7 +10,7 @@ import styled from "styled-components";
 import Price from "./Price";
 import Chart from "./Chart";
 import { useQuery } from "react-query";
-import { fetchCoin, fetchInfo, fetchTickers } from "../api";
+import { fetchInfo, fetchTickers } from "../api";
 import { Helmet } from "react-helmet";
 
 const Container = styled.div`
@@ -157,9 +156,7 @@ interface PriceData {
   };
 }
 
-interface IRouterProps {}
-
-function Coin({}: IRouterProps) {
+function Coin() {
   const { coinId } = useParams<RouterParams>();
   const { state } = useLocation<RouterState>();
   const priceMatch = useRouteMatch("/:coinId/price");
